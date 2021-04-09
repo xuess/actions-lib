@@ -1,0 +1,19 @@
+{
+  "name": "actions-lib",
+  "version": "1.0.0",
+  "description": "签到actions",
+  "main": "index.js",
+  "scripts": {
+    "tf8": "node tf8"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "xuss <wuniu2010@126.com>",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.19.2",
+    "node-schedule": "^1.2.5",
+    "nodemailer": "^4.4.0"
+  }
+}
