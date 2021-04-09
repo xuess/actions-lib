@@ -1,25 +1,30 @@
-name: Super-Linter
+name: AUTO_TASK_FOR_tttfff888_CI
 
 # Run this workflow every time a new commit pushed to your repository
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  # Set the job key. The key is displayed as the job name
-  # when a job name is not provided
-  super-lint:
-    # Name the Job
-    name: Lint code base
-    # Set the type of machine to run on
+  build:
+
     runs-on: ubuntu-latest
 
-    steps:
-      # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@v2
+    strategy:
+      matrix:
+        node-version: [10.x]
 
-      # Runs the Super-Linter action
-      - name: Run Super-Linter
-        uses: github/super-linter@v3
-        env:
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Build with Node.js
+      env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USER_ID_LIST: ${{ secrets.USER_ID_LIST }}
+    - run: npm ci
+    - run: npm run tf8 '${USER_ID_LIST}'
