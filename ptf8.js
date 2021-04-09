@@ -69,7 +69,7 @@ const tf8 = async (hrefUrl, userName) => {
 
 //延迟执行签到
 const setTimeSign = async (openId, index) => {
-  // await sleep(getRandom(10000, 30000));
+  await sleep(getRandom(10000, 30000));
 
   await tf8(
     `http://h51.jiujiangkeli.com/wechat/daily_check?openId=${openId}`,
