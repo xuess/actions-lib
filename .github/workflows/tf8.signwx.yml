@@ -1,0 +1,31 @@
+name: AUTO_TASK_FOR_tf8_weixin_CI
+
+# Run this workflow every time a new commit pushed to your repository
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '10 2 * * *'
+    # cron表达式，Actions时区是UTC时间，所以上午9点要往前推8个小时
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+      env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: npm i
+    - run: npm run ptf8 '${{ secrets.OPEN_ID_LIST }}'

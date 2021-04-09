@@ -4,7 +4,8 @@
   "description": "签到actions",
   "main": "index.js",
   "scripts": {
-    "tf8": "node tf8"
+    "tf8": "node tf8",
+    "ptf8": "node ptf8"
   },
   "keywords": [
     "node"
@@ -14,6 +15,7 @@
   "dependencies": {
     "moment": "^2.19.2",
     "node-schedule": "^1.2.5",
-    "nodemailer": "^4.4.0"
+    "nodemailer": "^4.4.0",
+    "puppeteer": "^1.x"
   }
 }
