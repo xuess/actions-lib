@@ -3,7 +3,7 @@
  * @Author: 午休
  * @Date: 2021-04-09 18:41:58
  * @LastEditors: 午休
- * @LastEditTime: 2021-04-11 21:48:27
+ * @LastEditTime: 2021-04-11 21:57:47
  */
 
 /**
@@ -79,7 +79,7 @@ const tf8 = async (hrefUrl, index) => {
 
 //延迟执行签到
 const setTimeSign = async (openId, index) => {
-  await sleep(getRandom(10000, 300000));
+  await sleep(getRandom(1000, 200000));
 
   await tf8(
     `http://h51.jiujiangkeli.com/wechat/daily_check?openId=${openId}`,

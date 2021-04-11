@@ -3,7 +3,7 @@
  * @Author: 午休
  * @Date: 2021-04-05 10:49:36
  * @LastEditors: 午休
- * @LastEditTime: 2021-04-11 21:48:12
+ * @LastEditTime: 2021-04-11 21:54:39
  */
 const request = require("./lib/request_https");
 const { getRandom, sendMessage, sleep } = require("./lib/utils");
@@ -70,9 +70,9 @@ let TF8Sign = async (cookie) => {
 };
 
 //延迟执行签到
-let setTimeSign = (cookieSess, index) => {
+let setTimeSign = async (cookieSess, index) => {
 
-  await sleep(getRandom(10000, 300000));
+  await sleep(getRandom(1000, 200000));
 
   if (cookieSess) {
       //签到
