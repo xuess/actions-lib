@@ -3,7 +3,7 @@
  * @Author: 午休
  * @Date: 2021-04-09 18:41:58
  * @LastEditors: 午休
- * @LastEditTime: 2021-04-09 18:56:44
+ * @LastEditTime: 2021-04-11 21:01:08
  */
 
 /**
@@ -12,9 +12,18 @@
  */
 
 const puppeteer = require("puppeteer");
-const { getRandom, sleep } = require("./lib/utils"); //工具类
+const { getRandom, sleep, sendMessage } = require("./lib/utils"); //工具类
 
-const tf8 = async (hrefUrl, userName) => {
+const myArgs = process.argv.splice(2);
+
+if (!myArgs) {
+  console.log("error cookie 参数未取到！！");
+  return;
+}
+const signList = myArgs[0].split("@_@");
+console.log("signList--->", signList);
+
+const tf8 = async (hrefUrl, index) => {
   // const browser = await puppeteer.launch({
   //   // headless: false,
   //   slowMo: 100
@@ -50,40 +59,36 @@ const tf8 = async (hrefUrl, userName) => {
     // 签到
     await page.tap("span[code=weixinsign]");
   } catch (error) {
-    console.log("tf8 wx 签到报错");
-    //  sendMailErr(`tf8 wx 签到报错 ${userName}`,error);
+    console.log(new Date().Format("yyyy-MM-dd hh:mm:ss") + "tf8 wx 签到报错");
+    sendMessage(myArgs[1], "tf8 wx 签到报错~~~", String(error));
   }
   // await page.tap(".click_qd");
-  console.log("tf8 wx 签到成功！");
+  console.log(new Date().Format("yyyy-MM-dd hh:mm:ss") + "tf8 wx 签到成功！");
 
   await sleep(3000);
 
   await page.screenshot({
-    path: `./screenshot/tf8/${userName}-sign-${new Date().Format(
+    path: `./screenshot/tf8/${index}-sign-${new Date().Format(
       "yyyy-MM-dd"
     )}.png`,
   });
 
   await browser.close();
+
+  if (index === signList.length - 1) {
+    sendMessage(myArgs[1], "tf8微信签到完成~~~");
+  }
 };
 
 //延迟执行签到
 const setTimeSign = async (openId, index) => {
-  await sleep(getRandom(10000, 30000));
+  await sleep(getRandom(10000, 300000));
 
   await tf8(
     `http://h51.jiujiangkeli.com/wechat/daily_check?openId=${openId}`,
     index
   );
 };
-
-const myArgs = process.argv.splice(2);
-if (!myArgs) {
-  console.log("error cookie 参数未取到！！");
-  return;
-}
-const signList = myArgs[0].split("@_@");
-console.log("signList--->", signList);
 
 //淘粉吧
 for (let i = 0; i < signList.length; i++) {
