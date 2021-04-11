@@ -3,7 +3,7 @@
  * @Author: 午休
  * @Date: 2021-04-09 18:41:58
  * @LastEditors: 午休
- * @LastEditTime: 2021-04-11 21:01:08
+ * @LastEditTime: 2021-04-11 21:48:27
  */
 
 /**
@@ -59,8 +59,8 @@ const tf8 = async (hrefUrl, index) => {
     // 签到
     await page.tap("span[code=weixinsign]");
   } catch (error) {
-    console.log(new Date().Format("yyyy-MM-dd hh:mm:ss") + "tf8 wx 签到报错");
-    sendMessage(myArgs[1], "tf8 wx 签到报错~~~", String(error));
+    console.log(new Date().Format("yyyy-MM-dd hh:mm:ss") , " tf8 wx 签到报错", 'hrefUrl-->',hrefUrl);
+    sendMessage(myArgs[1], "tf8 wx 签到报错~~~", String(error) + 'hrefUrl-->' + hrefUrl);
   }
   // await page.tap(".click_qd");
   console.log(new Date().Format("yyyy-MM-dd hh:mm:ss") + "tf8 wx 签到成功！");
@@ -75,9 +75,6 @@ const tf8 = async (hrefUrl, index) => {
 
   await browser.close();
 
-  if (index === signList.length - 1) {
-    sendMessage(myArgs[1], "tf8微信签到完成~~~");
-  }
 };
 
 //延迟执行签到
@@ -88,6 +85,10 @@ const setTimeSign = async (openId, index) => {
     `http://h51.jiujiangkeli.com/wechat/daily_check?openId=${openId}`,
     index
   );
+
+  if (index === signList.length - 1) {
+    sendMessage(myArgs[1], "tf8微信签到完成~~~", "打完收工！");
+  }
 };
 
 //淘粉吧
