@@ -67,11 +67,11 @@ const tf8 = async (hrefUrl, index) => {
 
   await sleep(3000);
 
-  await page.screenshot({
-    path: `./screenshot/tf8/${index}-sign-${new Date().Format(
-      "yyyy-MM-dd"
-    )}.png`,
-  });
+//   await page.screenshot({
+//     path: `./screenshot/tf8/${index}-sign-${new Date().Format(
+//       "yyyy-MM-dd"
+//     )}.png`,
+//   });
 
   await browser.close();
 
