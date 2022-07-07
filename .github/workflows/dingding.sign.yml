@@ -7,7 +7,7 @@ on:
       - main
   schedule:
     # - cron: '30 9 * * FRI'
-    - cron: '15 4 * * THU'
+    - cron: '50 4 * * THU'
     # cron表达式，Actions时区是UTC时间，所以上午9点要往前推8个小时 FRI
 
 jobs:
