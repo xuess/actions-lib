@@ -43,7 +43,7 @@ let DoSomeing = async (token) => {
 
 //延迟执行签到
 let setTimeSign = async (token, index) => {
-  await sleep(getRandom(1000, 20000));
+  // await sleep(getRandom(1000, 20000));
   if (token) {
     //签到
     await DoSomeing(token);
