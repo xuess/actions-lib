@@ -16,6 +16,7 @@
     "moment": "^2.19.2",
     "node-schedule": "^1.2.5",
     "nodemailer": "^4.4.0",
-    "puppeteer": "^1.x"
+    "puppeteer": "^1.x",
+    "dingtalk-robot-sender": "1.2.0"
   }
 }
