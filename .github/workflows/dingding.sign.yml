@@ -6,7 +6,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 9 * * 5'
+    - cron: '1 9 * * 5'
     #- cron: '30 8 * * FRI'
     #- cron: '50 7 * * 4'
     #- cron: '20 8 * * 4'
