@@ -82,7 +82,7 @@ const setTimeSign = async (openId, index) => {
   await sleep(getRandom(1000, 200000));
 
   await tf8(
-    `http://h51.jiujiangkeli.com/wechat/daily_check?openId=${openId}`,
+    `http://h51.haihu.com/wechat/daily_check_v1?openId=${openId}`,
     index
   );
 
