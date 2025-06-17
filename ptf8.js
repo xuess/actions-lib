@@ -93,5 +93,6 @@ const setTimeSign = async (openId, index) => {
 
 //淘粉吧
 for (let i = 0; i < signList.length; i++) {
-  setTimeSign(signList[i], i);
+  // 平台不支持微信签到了 注释掉
+  // setTimeSign(signList[i], i);
 }
