@@ -1,0 +1,22 @@
+name: Remove GitHub Pages Custom Domain
+
+on:
+  workflow_dispatch:
+
+jobs:
+  remove-domain:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+    steps:
+      - name: Clear GitHub Pages custom domain
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.repos.updateInformationAboutPagesSite({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              cname: ''
+            });
+            console.log('Custom domain cleared successfully.');
